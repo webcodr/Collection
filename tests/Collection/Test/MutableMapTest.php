@@ -15,6 +15,14 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($array, $list->getArray());
     }
 
+    public function testConstructorWithArray()
+    {
+        $array = array('bubba', 'gump', 'shrimps');
+        $list = new MutableMap($array);
+
+        $this->assertEquals($array, $list->getArray());
+    }
+
     public function testPropertyLength()
     {
         $list = new MutableMap('bubba', 'gump', 'shrimps');
@@ -46,6 +54,7 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $list = new MutableMap();
         $list->foo = $value;
 
+        $this->assertTrue(isset($list->foo));
         $this->assertEquals($value, $list->foo);
     }
 
@@ -139,12 +148,40 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(serialize($array), (string)$list);
     }
 
+    public function testHead()
+    {
+        $array = array('foo', 'bar');
+        $list = new MutableMap('foo', 'bar');
+
+        $this->assertEquals(reset($array), $list->head());
+    }
+
+    public function testLast()
+    {
+        $array = array('foo', 'bar');
+        $list = new MutableMap('foo', 'bar');
+
+        $this->assertEquals(end($array), $list->last());
+    }
+
     public function testReverse()
     {
         $expected = new MutableMap('bar', 'foo');
         $list = new MutableMap('foo', 'bar');
 
         $this->assertEquals($expected, $list->reverse());
+    }
+
+    public function testEach()
+    {
+        $expected = new MutableMap(array('foo' => 'bar'));
+        $result = new MutableMap();
+
+        $expected->each(function ($value, $key) use($result) {
+            $result->setProperty($key, $value);
+        });
+
+        $this->assertEquals($expected, $result);
     }
 
     public function testMap()
