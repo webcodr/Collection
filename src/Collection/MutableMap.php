@@ -154,7 +154,7 @@ class MutableMap implements \Countable, \IteratorAggregate
             throw new \InvalidArgumentException('Mapping function is not callable!');
         }
 
-        $this->_properties = array_walk($this->_properties, $callback);
+        array_walk($this->_properties, $callback);
 
         return $this;
     }
