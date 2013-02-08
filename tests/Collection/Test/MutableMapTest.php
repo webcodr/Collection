@@ -48,6 +48,24 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($value, $list->getProperty('foo'));
     }
 
+    public function testPropertyWithArray()
+    {
+        $value = array('foo' => 'bar');
+        $list = new MutableMap();
+        $list->setProperty('foo', array('foo' => 'bar'));
+
+        $this->assertEquals($value, $list->getProperty('foo', false));
+    }
+
+    public function testPropertyWithMap()
+    {
+        $value = array('foo' => 'bar');
+        $list = new MutableMap();
+        $list->setProperty('foo', array('foo' => 'bar'));
+
+        $this->assertEquals(new MutableMap($value), $list->getProperty('foo'));
+    }
+
     public function testMagicProperty()
     {
         $value = 'bar';

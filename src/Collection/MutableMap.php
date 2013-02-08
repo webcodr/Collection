@@ -275,8 +275,7 @@ class MutableMap implements \Countable, \IteratorAggregate
             $value = $this->_properties[$property];
 
             if ($arrayAsMap === true && is_array($value)) {
-                $list = new MutableMap();
-                $value = $list->assign($value);
+                $value = new MutableMap($value);
             }
 
             return $value;
