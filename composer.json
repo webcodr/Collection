@@ -1,9 +1,9 @@
 {
-    "name": "madcatme/collection",
+    "name": "webcodr/collection",
     "type": "library",
     "description": "Collection library for PHP",
     "keywords": ["Collection", "Array"],
-    "homepage": "https://github.com/MadCatme/mongoappkit",
+    "homepage": "https://github.com/WebCodr/Collection",
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.4.0"
     },
     "autoload": {
         "psr-0": {
