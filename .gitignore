@@ -166,5 +166,4 @@ pip-log.txt
 
 tests/report/*
 composer.phar
-composer.lock
 /vendor/*
