@@ -217,6 +217,18 @@ class MutableMap implements \Countable, \IteratorAggregate
     }
 
     /**
+     * Joins map elements into a string with a given glue string
+     *
+     * @param string $glue
+     * @return string
+     */
+
+    public function join($glue = '')
+    {
+        return implode($glue, $this->properties);
+    }
+
+    /**
      * Eliminates duplicate values
      *
      * @return MutableMap
