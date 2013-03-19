@@ -26,7 +26,7 @@ class ArrayMap extends MutableMap implements \ArrayAccess
 
     public function offsetExists($property)
     {
-        return isset($this->_properties[$property]);
+        return isset($this->properties[$property]);
     }
 
     /**

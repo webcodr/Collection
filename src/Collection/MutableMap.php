@@ -10,7 +10,7 @@ class MutableMap implements \Countable, \IteratorAggregate
      * @var array
      */
 
-    protected $_properties = array();
+    protected $properties = array();
 
     /**
      * Constructor
@@ -28,7 +28,7 @@ class MutableMap implements \Countable, \IteratorAggregate
             if (is_array($args[0])) {
                 $this->assign($args[0]);
             } else {
-                $this->_properties = $args;
+                $this->properties = $args;
             }
         }
     }
@@ -76,7 +76,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function __isset($property)
     {
-        return isset($this->_properties[$property]);
+        return isset($this->properties[$property]);
     }
 
     /**
@@ -102,7 +102,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function __toString()
     {
-        return serialize($this->_properties);
+        return serialize($this->properties);
     }
 
     /**
@@ -113,7 +113,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function head()
     {
-        return reset($this->_properties);
+        return reset($this->properties);
     }
 
     /**
@@ -124,7 +124,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function last()
     {
-        return end($this->_properties);
+        return end($this->properties);
     }
 
     /**
@@ -135,7 +135,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function reverse()
     {
-        $this->_properties = array_reverse($this->_properties);
+        $this->properties = array_reverse($this->properties);
 
         return $this;
     }
@@ -154,7 +154,7 @@ class MutableMap implements \Countable, \IteratorAggregate
             throw new \InvalidArgumentException('Mapping function is not callable!');
         }
 
-        array_walk($this->_properties, $callback);
+        array_walk($this->properties, $callback);
 
         return $this;
     }
@@ -173,7 +173,7 @@ class MutableMap implements \Countable, \IteratorAggregate
             throw new \InvalidArgumentException('Mapping function is not callable!');
         }
 
-        $this->_properties = array_map($callback, $this->_properties);
+        $this->properties = array_map($callback, $this->properties);
 
         return $this;
     }
@@ -188,7 +188,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function slice($offset, $limit)
     {
-        $properties = array_slice($this->_properties, $offset, $limit);
+        $properties = array_slice($this->properties, $offset, $limit);
         $list = new self();
         $list->assign($properties);
 
@@ -209,7 +209,7 @@ class MutableMap implements \Countable, \IteratorAggregate
             throw new \InvalidArgumentException('Filter is not callable!');
         }
 
-        $properties = array_filter($this->_properties, $callback);
+        $properties = array_filter($this->properties, $callback);
         $list = new self();
         $list->assign($properties);
 
@@ -224,7 +224,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function unique()
     {
-        $this->_properties = array_unique($this->_properties);
+        $this->properties = array_unique($this->properties);
 
         return $this;
     }
@@ -238,7 +238,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function assign(array $properties)
     {
-        $this->_properties = $properties;
+        $this->properties = $properties;
 
         return $this;
     }
@@ -264,15 +264,16 @@ class MutableMap implements \Countable, \IteratorAggregate
     /**
      * Returns value of given property name or throws an exception if the property does not exist
      *
-     * @param string $property
-     * @return mixed
+     * @param $property
+     * @param bool $arrayAsMap
+     * @return MutableMap
      * @throws \OutOfBoundsException
      */
 
     public function getProperty($property, $arrayAsMap = true)
     {
-        if (array_key_exists($property, $this->_properties)) {
-            $value = $this->_properties[$property];
+        if (array_key_exists($property, $this->properties)) {
+            $value = $this->properties[$property];
 
             if ($arrayAsMap === true && is_array($value)) {
                 $value = new MutableMap($value);
@@ -294,7 +295,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function setProperty($property, $value)
     {
-        $this->_properties[$property] = $value;
+        $this->properties[$property] = $value;
 
         return $this;
     }
@@ -302,17 +303,18 @@ class MutableMap implements \Countable, \IteratorAggregate
     /**
      * Removes a property
      *
-     * @param string $property
-     * @return MutableMap
+     * @param $property
+     * @return $this
+     * @throws \OutOfBoundsException
      */
 
     public function removeProperty($property)
     {
-        if (!array_key_exists($property, $this->_properties)) {
+        if (!array_key_exists($property, $this->properties)) {
             throw new \OutOfBoundsException("Index '{$property}' does not exist");
         }
 
-        unset($this->_properties[$property]);
+        unset($this->properties[$property]);
 
         return $this;
     }
@@ -326,7 +328,7 @@ class MutableMap implements \Countable, \IteratorAggregate
     public function getProperties()
     {
         // get all property names
-        $properties = array_keys($this->_properties);
+        $properties = array_keys($this->properties);
         $list = new MutableMap();
 
         if (!empty($properties)) {
@@ -347,7 +349,7 @@ class MutableMap implements \Countable, \IteratorAggregate
     public function getArray()
     {
         // get all property names
-        $properties = array_keys($this->_properties);
+        $properties = array_keys($this->properties);
         $values = array();
 
         if (!empty($properties)) {
@@ -371,7 +373,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function count()
     {
-        return count($this->_properties);
+        return count($this->properties);
     }
 
     /**
@@ -382,6 +384,6 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function getIterator()
     {
-        return new \ArrayIterator($this->_properties);
+        return new \ArrayIterator($this->properties);
     }
 }
