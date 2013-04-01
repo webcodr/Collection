@@ -261,4 +261,18 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($map->has('foo'));
         $this->assertFalse($map->has('bar'));
     }
+
+    public function testJoin()
+    {
+        $map = new MutableMap('foo', 'bar');
+        $this->assertEquals('foo bar', $map->join(' '));
+    }
+
+    public function testUnique()
+    {
+        $map = new MutableMap('foo', 'foo');
+        $map->unique();
+
+        $this->assertEquals(1, $map->count());
+    }
 }
