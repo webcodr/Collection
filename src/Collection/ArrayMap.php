@@ -14,7 +14,7 @@ class ArrayMap extends MutableMap implements \ArrayAccess
 
     public function offsetSet($property, $value)
     {
-        $this->setProperty($property, $value);
+        $this->set($property, $value);
     }
 
     /**
@@ -26,7 +26,7 @@ class ArrayMap extends MutableMap implements \ArrayAccess
 
     public function offsetExists($property)
     {
-        return isset($this->properties[$property]);
+        return isset($this->attributes[$property]);
     }
 
     /**
@@ -37,7 +37,7 @@ class ArrayMap extends MutableMap implements \ArrayAccess
 
     public function offsetUnset($property)
     {
-        $this->removeProperty($property);
+        $this->remove($property);
     }
 
     /**
@@ -49,6 +49,6 @@ class ArrayMap extends MutableMap implements \ArrayAccess
 
     public function offsetGet($property)
     {
-        return $this->getProperty($property);
+        return $this->get($property);
     }
 }

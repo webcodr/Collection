@@ -24,7 +24,7 @@ class ImmutableMapTest extends \PHPUnit_Framework_TestCase
     public function testUpdateProperties()
     {
         $list = new ImmutableMap();
-        $list->updateProperties(array('foo'));
+        $list->update(array('foo'));
     }
 
     /**
@@ -34,7 +34,7 @@ class ImmutableMapTest extends \PHPUnit_Framework_TestCase
     public function testSetProperty()
     {
         $list = new ImmutableMap();
-        $list->setProperty('foo', 'bar');
+        $list->set('foo', 'bar');
     }
 
     /**
@@ -44,6 +44,6 @@ class ImmutableMapTest extends \PHPUnit_Framework_TestCase
     public function testRemoveProperty()
     {
         $list = new ImmutableMap();
-        $list->removeProperty('foo');
+        $list->remove('foo');
     }
 }

@@ -11,7 +11,7 @@ class ImmutableMap extends MutableMap
      * @throws \BadMethodCallException
      */
 
-    public function assign(array $properties)
+    public function assign(array $attributes)
     {
         throw new \BadMethodCallException('Method "assign" is not supported by class ImmutableList.');
     }
@@ -22,7 +22,7 @@ class ImmutableMap extends MutableMap
      * @throws \BadMethodCallException
      */
 
-    public function updateProperties($properties)
+    public function update($attributes)
     {
         throw new \BadMethodCallException('Method "updateProperties" is not supported by class ImmutableList.');
     }
@@ -33,7 +33,7 @@ class ImmutableMap extends MutableMap
      * @throws \BadMethodCallException
      */
 
-    public function setProperty($property, $value)
+    public function set($attribute, $value)
     {
         throw new \BadMethodCallException('Method "setProperty" is not supported by class ImmutableList.');
     }
@@ -44,7 +44,7 @@ class ImmutableMap extends MutableMap
      * @throws \BadMethodCallException
      */
 
-    public function removeProperty($property)
+    public function remove($attribute)
     {
         throw new \BadMethodCallException('Method "removeProperty" is not supported by class ImmutableList.');
     }

@@ -43,27 +43,27 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
     {
         $value = 'bar';
         $list = new MutableMap();
-        $list->setProperty('foo', $value);
+        $list->set('foo', $value);
 
-        $this->assertEquals($value, $list->getProperty('foo'));
+        $this->assertEquals($value, $list->get('foo'));
     }
 
     public function testPropertyWithArray()
     {
         $value = array('foo' => 'bar');
         $list = new MutableMap();
-        $list->setProperty('foo', array('foo' => 'bar'));
+        $list->set('foo', array('foo' => 'bar'));
 
-        $this->assertEquals($value, $list->getProperty('foo', false));
+        $this->assertEquals($value, $list->get('foo', false));
     }
 
     public function testPropertyWithMap()
     {
         $value = array('foo' => 'bar');
         $list = new MutableMap();
-        $list->setProperty('foo', array('foo' => 'bar'));
+        $list->set('foo', array('foo' => 'bar'));
 
-        $this->assertEquals(new MutableMap($value), $list->getProperty('foo'));
+        $this->assertEquals(new MutableMap($value), $list->get('foo'));
     }
 
     public function testMagicProperty()
@@ -83,7 +83,7 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
     public function testNonExistingProperty()
     {
         $list = new MutableMap();
-        $value = $list->getProperty('foo');
+        $value = $list->get('foo');
     }
 
     /**
@@ -95,9 +95,9 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $property = 'foo';
         $value = 'bar';
         $list = new MutableMap();
-        $list->setProperty($property, $value);
-        $list->removeProperty($property);
-        $value = $list->getProperty($property);
+        $list->set($property, $value);
+        $list->remove($property);
+        $value = $list->get($property);
     }
 
     /**
@@ -121,13 +121,13 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
     public function testRemoveNonExistingProperty()
     {
         $list = new MutableMap();
-        $list->removeProperty('foo');
+        $list->remove('foo');
     }
 
     public function testCount()
     {
         $list = new MutableMap();
-        $list->setProperty('foo', 'bar');
+        $list->set('foo', 'bar');
 
         $this->assertEquals(1, count($list));
     }
@@ -153,7 +153,7 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $list = new MutableMap();
         $list->assign($values);
         $newValues = array('bar' => 'foo');
-        $list->updateProperties($newValues);
+        $list->update($newValues);
         $expected = array_merge($values, $newValues);
         $this->assertEquals($expected, $list->getArray());
     }
@@ -171,7 +171,7 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $array = array('foo', 'bar');
         $list = new MutableMap('foo', 'bar');
 
-        $this->assertEquals(reset($array), $list->head());
+        $this->assertEquals(reset($array), $list->first());
     }
 
     public function testLast()
@@ -196,7 +196,7 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
         $result = new MutableMap();
 
         $expected->each(function ($value, $key) use($result) {
-            $result->setProperty($key, $value);
+            $result->set($key, $value);
         });
 
         $this->assertEquals($expected, $result);
@@ -250,6 +250,6 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
             return strtoupper($value);
         });
 
-        $this->assertEquals($expected->getProperties(), $list->filter($filter)->getProperties());
+        $this->assertEquals($expected->all(), $list->filter($filter)->all());
     }
 }
