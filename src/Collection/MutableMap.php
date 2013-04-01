@@ -76,7 +76,7 @@ class MutableMap implements \Countable, \IteratorAggregate
 
     public function __isset($attribute)
     {
-        return isset($this->attributes[$attribute]);
+        return $this->has($attribute);
     }
 
     /**
@@ -295,6 +295,18 @@ class MutableMap implements \Countable, \IteratorAggregate
         }
 
         throw new \OutOfBoundsException("Attribute '{$attribute}' does not exist");
+    }
+
+    /**
+     * Checks if given attribute is set
+     *
+     * @param $attribute
+     * @return bool
+     */
+
+    public function has($attribute)
+    {
+        return isset($this->attributes[$attribute]);
     }
 
     /**
