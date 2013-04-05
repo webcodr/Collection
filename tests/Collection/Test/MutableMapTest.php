@@ -275,4 +275,56 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $map->count());
     }
+
+    public function testSort()
+    {
+        $map = new MutableMap('c', 'b', 'a');
+        $map->sort();
+
+        $this->assertEquals(['a', 'b', 'c'], $map->getArray());
+    }
+
+    public function testSortCustom()
+    {
+        $map = new MutableMap('a', 'b', 'c');
+        $map->sort(function($a, $b) {
+            return !strcmp($a, $b);
+        });
+
+        $this->assertEquals(['c', 'b', 'a'], $map->getArray());
+    }
+
+    public function testShift()
+    {
+        $map = new MutableMap('a', 'b', 'c');
+        $value = $map->shift();
+
+        $this->assertEquals('a', $value);
+        $this->assertEquals(['b', 'c'], $map->getArray());
+    }
+
+    public function testPop()
+    {
+        $map = new MutableMap('a', 'b', 'c');
+        $value = $map->pop();
+
+        $this->assertEquals('c', $value);
+        $this->assertEquals(['a', 'b'], $map->getArray());
+    }
+
+    public function testUnshift()
+    {
+        $map = new MutableMap('b', 'c');
+        $map->unshift('a');
+
+        $this->assertEquals(['a', 'b', 'c'], $map->getArray());
+    }
+
+    public function testPush()
+    {
+        $map = new MutableMap('a', 'b');
+        $map->push('c');
+
+        $this->assertEquals(['a', 'b', 'c'], $map->getArray());
+    }
 }

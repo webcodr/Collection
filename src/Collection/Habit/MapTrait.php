@@ -139,4 +139,82 @@ trait MapTrait
 
         return $this;
     }
+
+    /**
+     * Sorts alphabetically or using the given callback
+     *
+     * @param null $callback
+     * @return $this
+     */
+
+    public function sort($callback = null)
+    {
+        if (is_callable($callback)) {
+            usort($this->attributes, $callback);
+        } else {
+            sort($this->attributes);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Shifts an element off the beginning of array
+     *
+     * @return mixed
+     */
+
+    public function shift()
+    {
+        return array_shift($this->attributes);
+    }
+
+    /**
+     * Pops the element off the end of array
+     *
+     * @return mixed
+     */
+
+    public function pop()
+    {
+        return array_pop($this->attributes);
+    }
+
+    /**
+     * Prepends one or more elements to the beginning of an array
+     *
+     * @return $this
+     */
+
+    public function unshift()
+    {
+        $args = func_get_args();
+
+        if (!empty($args)) {
+            foreach ($args as  $arg) {
+                array_unshift($this->attributes, $arg);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Pushes one or more elements onto the end of array
+     *
+     * @return $this
+     */
+
+    public function push()
+    {
+        $args = func_get_args();
+
+        if (!empty($args)) {
+            foreach ($args as  $arg) {
+                array_push($this->attributes, $arg);
+            }
+        }
+
+        return $this;
+    }
 }
