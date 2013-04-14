@@ -69,6 +69,18 @@ trait AttributeTrait
     }
 
     /**
+     * Returns the index of given value
+     *
+     * @param $value
+     * @return mixed
+     */
+
+    public function index($value)
+    {
+        return array_search($value, $this->attributes, true);
+    }
+
+    /**
      * Sets a attribute and its value
      *
      * @param string $attribute
@@ -84,7 +96,7 @@ trait AttributeTrait
     }
 
     /**
-     * Removes a attribute
+     * Removes an attribute
      *
      * @param $attribute
      * @return $this
@@ -98,6 +110,24 @@ trait AttributeTrait
         }
 
         unset($this->attributes[$attribute]);
+
+        return $this;
+    }
+
+    /**
+     * Removes an attribute by value
+     *
+     * @param $value
+     * @return $this
+     */
+
+    public function delete($value)
+    {
+        $index = $this->index($value);
+
+        if ($index !== false) {
+            $this->remove($index);
+        }
 
         return $this;
     }

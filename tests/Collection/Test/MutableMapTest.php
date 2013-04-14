@@ -327,4 +327,22 @@ class MutableMapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(['a', 'b', 'c'], $map->getArray());
     }
+
+    public function testIndex()
+    {
+        $map = new MutableMap('a', 'b');
+
+        $this->assertEquals(1, $map->index('b'));
+    }
+
+    /**
+     * @expectedException \OutOfBoundsException
+     */
+
+    public function testDelete()
+    {
+        $map = new MutableMap('a', 'b');
+        $map->delete('b');
+        $map->get(1);
+    }
 }
