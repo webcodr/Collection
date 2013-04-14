@@ -188,10 +188,11 @@ trait AttributeTrait
     /**
      * Returns all attributes as new MutableList
      *
+     * @param bool $asAssoc
      * @return array
      */
 
-    public function getArray()
+    public function getArray($asAssoc = true)
     {
         // get all attribute names
         $attributes = array_keys($this->attributes);
@@ -199,7 +200,13 @@ trait AttributeTrait
 
         if (!empty($attributes)) {
             foreach ($attributes as $attribute) {
-                $values[$attribute] = $this->get($attribute, false);
+                $value = $this->get($attribute, false);
+
+                if ($asAssoc === true) {
+                    $values[$attribute] = $value;
+                } else {
+                    $values[] = $value;
+                }
             }
         }
 
