@@ -43,7 +43,7 @@ trait AttributeTrait
 
     public function get($attribute, $arrayAsMap = true)
     {
-        if (array_key_exists($attribute, $this->attributes)) {
+        if ($this->has($attribute)) {
             $value = $this->attributes[$attribute];
 
             if ($arrayAsMap === true && is_array($value)) {
@@ -105,7 +105,7 @@ trait AttributeTrait
 
     public function remove($attribute)
     {
-        if (!array_key_exists($attribute, $this->attributes)) {
+        if (!$this->has($attribute)) {
             throw new \OutOfBoundsException("Attribute '{$attribute}' does not exist");
         }
 
