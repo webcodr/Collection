@@ -37,7 +37,7 @@ trait AttributeTrait
      *
      * @param $attribute
      * @param bool $arrayAsMap
-     * @return MutableMap
+     * @return \Collection\MutableMap
      * @throws \OutOfBoundsException
      */
 
@@ -85,7 +85,7 @@ trait AttributeTrait
      *
      * @param string $attribute
      * @param mixed $value
-     * @return MutableMap
+     * @return \Collection\MutableMap
      */
 
     public function set($attribute, $value)
@@ -136,7 +136,7 @@ trait AttributeTrait
      * Imports an array
      *
      * @param array $attributes
-     * @return MutableMap
+     * @return \Collection\MutableMap
      */
 
     public function assign(array $attributes)
@@ -150,7 +150,7 @@ trait AttributeTrait
      * Update attributes with from given array
      *
      * @param array $attributes
-     * @return MutableMap
+     * @return \Collection\MutableMap
      */
 
     public function update($attributes)
