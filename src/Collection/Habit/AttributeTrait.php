@@ -165,6 +165,17 @@ trait AttributeTrait
     }
 
     /**
+     * Returns the keys of the attributes
+     *
+     * @return array
+     */
+
+    public function keys()
+    {
+        return array_keys($this->attributes);
+    }
+
+    /**
      * Returns all attributes as new MutableList
      *
      * @return array
@@ -173,7 +184,7 @@ trait AttributeTrait
     public function all()
     {
         // get all attribute names
-        $attributes = array_keys($this->attributes);
+        $attributes = $this->keys();
         $list = new self();
 
         if (!empty($attributes)) {
@@ -195,7 +206,7 @@ trait AttributeTrait
     public function getArray($asAssoc = true)
     {
         // get all attribute names
-        $attributes = array_keys($this->attributes);
+        $attributes = $this->keys();
         $values = array();
 
         if (!empty($attributes)) {
