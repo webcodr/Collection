@@ -9,7 +9,7 @@ trait AttributeTrait
      * @var array
      */
 
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * Constructor
@@ -207,7 +207,7 @@ trait AttributeTrait
     {
         // get all attribute names
         $attributes = $this->keys();
-        $values = array();
+        $values = [];
 
         if (!empty($attributes)) {
             foreach ($attributes as $attribute) {
