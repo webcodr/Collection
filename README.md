@@ -21,7 +21,7 @@ $ php composer.phar require webcodr/collection:2.*
 
 Collections provides two classes: MutableMap and ArrayMap
 
-ArrayMap extends MutableMap with in an implementation of the SPL interface ArrayAccess
+ArrayMap extends MutableMap with an implementation of the SPL interface ArrayAccess
 
 MutableMap implements the SPL interfaces IteratorAggregate and Countable.
 
@@ -30,6 +30,8 @@ Both classes support a fluent interface with method chaining. Methods without a 
 ### Usage
 
 A little code example says more than 1,000 words, so here we go:
+
+The complete documentation is available in doc directory. (it's little buggy due to the use of traits)
 
 ~~~ php
 <?php

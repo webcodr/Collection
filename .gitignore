@@ -2,7 +2,7 @@
 /*.sublime-workspace
 /*.sublime-project
 
-/.DS_Store
+.DS_Store
 
 /composer.phar
 /phpunit.phar
