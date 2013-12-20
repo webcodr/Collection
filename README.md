@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/WebCodr/Collection.png?branch=master)](https://travis-ci.org/WebCodr/Collection)
 
+[![PHP version](https://badge.fury.io/ph/WebCodr%2FCollection.png)](http://badge.fury.io/ph/WebCodr%2FCollection)
+
 ### A set of array replacement classes for PHP
 
 ### Requirements
